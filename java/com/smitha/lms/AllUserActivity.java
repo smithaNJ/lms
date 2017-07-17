@@ -16,19 +16,11 @@ import android.widget.RatingBar;
 import com.smitha.lms.data.User;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
-import static android.R.attr.button;
-import static android.R.attr.data;
-import static android.R.attr.id;
-import static android.R.attr.rating;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static com.smitha.lms.R.id.rbF;
-import static com.smitha.lms.R.id.rbM;
+
 
 public class AllUserActivity extends AppCompatActivity {
-    public static ArrayList<User> usersList=new ArrayList<User>();
+    public static ArrayList<User> usersList=new ArrayList<>();
     private final String LOG_TAG=AllUserActivity.class.getSimpleName();
    private User user,updateUser=null;
    private EditText nameET,ageET,salaryET;
@@ -42,6 +34,23 @@ public class AllUserActivity extends AppCompatActivity {
     private String sex_currUser;
     private Intent intent;
     private int updateUserId=-1,index;
+
+
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(updateUser!=null){
+            updateUser();
+        }else{
+            refreshScreen();
+            addUser_button.setText("AddUser");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +67,7 @@ public class AllUserActivity extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
 
-       // updateUser=(User)getIntent().getSerializableExtra("selectedUser");
+        updateUser=(User)getIntent().getSerializableExtra("selectedUser");
 
 
 
@@ -66,6 +75,9 @@ public class AllUserActivity extends AppCompatActivity {
             updateUserId=updateUser.getId();
             addUser_button.setText("Save");
             updateUser();
+        }else
+        {
+            refreshScreen();
         }
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -90,6 +102,7 @@ public class AllUserActivity extends AppCompatActivity {
         addUser_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.setSelected(true);
 
                 name_currUser=nameET.getText().toString();
                 age_currUser=Integer.valueOf(ageET.getText().toString());
@@ -101,7 +114,7 @@ public class AllUserActivity extends AppCompatActivity {
                         index = usersList.indexOf(updateUser);
                         usersList.remove(index);
                         user=new User(updateUserId,name_currUser,age_currUser,sex_currUser,salary_currUser,rating_currUser);
-                        updateUserId=-1;
+                        updateUser=null;
                     }
 
                 else {
@@ -147,6 +160,14 @@ public class AllUserActivity extends AppCompatActivity {
         ratingBar.setNumStars(5);
         ratingBar.setRating(updateUser.getRating());
         addUser();
+    }
+    public void refreshScreen(){
+        nameET.setText("");
+        ageET.setText("");
+        salaryET.setText("");
+        ratingBar.setRating(0);
+        radioGroup.clearCheck();
+
     }
 
 

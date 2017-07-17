@@ -56,6 +56,7 @@ public class UserListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setSelected(true);
                 String t;
                 final User u;
                 u=(User)adapterView.getItemAtPosition(i);
@@ -63,6 +64,7 @@ public class UserListActivity extends AppCompatActivity {
                 del_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.setSelected(true);
                         if(usersList.contains(u)){
                             usersList.remove(u);
                             adapter.remove(u);
@@ -74,6 +76,7 @@ public class UserListActivity extends AppCompatActivity {
                 update_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.setSelected(true);
                         Intent intent=new Intent(getApplicationContext(),AllUserActivity.class);
                         intent.putExtra("selectedUser",u);
                         startActivity(intent);

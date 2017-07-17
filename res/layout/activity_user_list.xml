@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DELETE"
+        android:background="@drawable/select"
         android:textSize="20dp"
         android:layout_gravity="bottom"
         />
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:text="UPDATE"
         android:textSize="20dp"
+        android:background="@drawable/select"
         android:layout_toRightOf="@id/del_button"
         android:layout_marginLeft="30dp"
         android:layout_gravity="bottom|right"/>
