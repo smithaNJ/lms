@@ -16,6 +16,8 @@ import android.widget.RatingBar;
 import com.smitha.lms.data.User;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import static android.R.attr.button;
 import static android.R.attr.data;
@@ -54,15 +56,14 @@ public class AllUserActivity extends AppCompatActivity {
         ratingBar=(RatingBar)findViewById(R.id.r_bar);
         addUser_button=(Button)findViewById(R.id.addUser_Button);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        updateUser=(User)getIntent().getSerializableExtra("selectedUser");
+
+
+       // updateUser=(User)getIntent().getSerializableExtra("selectedUser");
 
 
 
         if(updateUser!=null){
             updateUserId=updateUser.getId();
-            Log.e(LOG_TAG,usersList.toString());
-            Log.e(LOG_TAG,updateUser.toString());
-
             addUser_button.setText("Save");
             updateUser();
         }
@@ -73,7 +74,6 @@ public class AllUserActivity extends AppCompatActivity {
                 radioButtonF=(RadioButton)group. findViewById(R.id.rbF);
 
                 checkedId=group.getCheckedRadioButtonId();
-                Log.e(LOG_TAG,String.valueOf(checkedId));
                 switch(checkedId){
                     case R.id.rbM:
                         sex_currUser=radioButtonM.getText().toString();
@@ -97,32 +97,23 @@ public class AllUserActivity extends AppCompatActivity {
                 salary_currUser=Double.valueOf(salaryET.getText().toString());
                 rating_currUser = (int)ratingBar.getRating();
 
-                  Boolean b=usersList.contains(updateUser);
-                Log.e(LOG_TAG,String.valueOf(b));
                     if(usersList.contains(updateUser)) {
                         index = usersList.indexOf(updateUser);
-                        Log.e(LOG_TAG,String.valueOf(index));
                         usersList.remove(index);
-                        Log.e(LOG_TAG,usersList.toString());
                         user=new User(updateUserId,name_currUser,age_currUser,sex_currUser,salary_currUser,rating_currUser);
-                        Log.e(LOG_TAG,String.valueOf(updateUserId)+user.getName());
                         updateUserId=-1;
                     }
 
                 else {
 
                     int new_id = usersList.size() + 1;
+                        user = new User(new_id, name_currUser, age_currUser, sex_currUser, salary_currUser, rating_currUser);
 
-                    user = new User(new_id, name_currUser, age_currUser, sex_currUser, salary_currUser, rating_currUser);
-                    Log.e(LOG_TAG,String.valueOf(new_id)+name_currUser);
                }
                 intent=new Intent(AllUserActivity.this,UserListActivity.class);
-//                Bundle bundle=new Bundle();
-//                bundle.putString("UserDetails",user.toString());
-//                intent.putExtras(bundle);
                 intent.putExtra("userdetails",user);
                 startActivity(intent);
-                //Log.e(LOG_TAG,user.toString());
+
 
             }
         });

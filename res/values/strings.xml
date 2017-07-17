@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">lms</string>
+    <string name="col_name">NAME</string>
+    <string name="col_age">AGE</string>
+    <string name="col_sex">SEX</string>
+    <string name="col_salary">SALARY</string>
+    <string name="col_rating">RATING</string>
+    <string name="delete">DELETE</string>
+    <string name="update">UPDATE</string>
 </resources>
