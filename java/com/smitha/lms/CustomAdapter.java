@@ -58,7 +58,7 @@ public class CustomAdapter extends ArrayAdapter implements View.OnClickListener 
             holder=new ViewHolder();
             holder.nameTv =(TextView)convertView.findViewById(R.id.name_col_textView);
             holder.ageTv =(TextView)convertView.findViewById(R.id.age_col_textView);
-            holder.genderTv =(TextView)convertView.findViewById(R.id.sex_col_textView);
+            holder.genderTv =(TextView)convertView.findViewById(R.id.gender_col_textView);
             holder.salaryTv =(TextView)convertView.findViewById(R.id.salary_col_textView);
             holder.ratingTv =(TextView)convertView.findViewById(R.id.rating_col_textView);
 

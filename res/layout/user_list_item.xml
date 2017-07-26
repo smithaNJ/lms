@@ -29,7 +29,7 @@
         />
 
     <TextView
-        android:id="@+id/sex_col_textView"
+        android:id="@+id/gender_col_textView"
         android:layout_width="0dp"
         android:layout_height="@dimen/activity_horizontal_margin"
         android:layout_weight="1"

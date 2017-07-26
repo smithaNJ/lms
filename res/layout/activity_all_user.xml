@@ -56,10 +56,10 @@
 
         android:digits="0,1,2,3,4,5,6,7,8,9"/>
     <TextView
-        android:id="@+id/sex_textView"
+        android:id="@+id/gender_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sex"
+        android:text="Gender"
         android:textSize="30sp"
         android:layout_gravity="start"
         android:layout_margin="16dp"
@@ -70,8 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_toRightOf="@+id/sex_textView"
-        android:layout_toEndOf="@+id/sex_textView"
+        android:layout_toRightOf="@+id/gender_textView"
+        android:layout_toEndOf="@+id/gender_textView"
         android:layout_below="@+id/age_editText">
         <RadioButton
             android:id="@+id/rbM"
@@ -97,7 +97,7 @@
         android:textSize="30sp"
         android:layout_gravity="start"
         android:layout_margin="16dp"
-        android:layout_below="@+id/sex_textView"
+        android:layout_below="@+id/gender_textView"
         />
     <EditText
         android:id="@+id/salary_editText"

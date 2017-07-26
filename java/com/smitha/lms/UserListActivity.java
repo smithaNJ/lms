@@ -22,7 +22,6 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            //   setContentView(R.layout.activity_user_list);
             setContentView(R.layout.user_list_view);
             User users;
             ListView listView;
