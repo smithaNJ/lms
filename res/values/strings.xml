@@ -7,4 +7,5 @@
     <string name="col_rating">RATING</string>
     <string name="delete">DELETE</string>
     <string name="update">UPDATE</string>
+    <string name="new_user">New User</string>
 </resources>

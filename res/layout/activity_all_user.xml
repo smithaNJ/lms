@@ -15,26 +15,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:textSize="30dp"
-        android:layout_gravity="left"
+        android:textSize="30sp"
+        android:layout_gravity="start"
         android:layout_margin="16dp"
         />
     <EditText
         android:id="@+id/name_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:layout_gravity="right"
+        android:textSize="30sp"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/name_textView"
         android:layout_toRightOf="@+id/name_textView"
-        android:inputType="textPersonName"
-        android:text="Enter Name"/>
+        android:inputType="textFilter"
+        android:maxLength="10"
+        />
     <TextView
         android:id="@+id/age_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age"
-        android:textSize="30dp"
-        android:layout_gravity="left"
+        android:textSize="30sp"
+        android:layout_gravity="start"
         android:layout_margin="16dp"
         android:layout_below="@+id/name_textView"
         />
@@ -43,19 +45,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/age_textView"
         android:layout_toRightOf="@+id/age_textView"
         android:layout_below="@+id/name_editText"
         android:inputType="number"
+        android:maxLength="2"
         android:text="0"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+
+        android:digits="0,1,2,3,4,5,6,7,8,9"/>
     <TextView
         android:id="@+id/sex_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sex"
-        android:textSize="30dp"
-        android:layout_gravity="left"
+        android:textSize="30sp"
+        android:layout_gravity="start"
         android:layout_margin="16dp"
         android:layout_below="@+id/age_textView"
         />
@@ -65,6 +71,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_toRightOf="@+id/sex_textView"
+        android:layout_toEndOf="@+id/sex_textView"
         android:layout_below="@+id/age_editText">
         <RadioButton
             android:id="@+id/rbM"
@@ -72,14 +79,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="M"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
         <RadioButton
             android:id="@+id/rbF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="F"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
     </RadioGroup>
 
     <TextView
@@ -87,8 +94,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salary"
-        android:textSize="30dp"
-        android:layout_gravity="left"
+        android:textSize="30sp"
+        android:layout_gravity="start"
         android:layout_margin="16dp"
         android:layout_below="@+id/sex_textView"
         />
@@ -96,19 +103,24 @@
         android:id="@+id/salary_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:layout_gravity="right"
+        android:textSize="30sp"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/salary_textView"
         android:layout_toRightOf="@+id/salary_textView"
         android:inputType="numberDecimal"
         android:layout_below="@+id/radioGroup"
+        android:maxLength="6"
         android:text="0.00"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+
+        android:digits="0,1,2,3,4,5,6,7,8,9"/>
 
     <RatingBar android:id="@+id/r_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/salary_textView"
         android:layout_centerHorizontal="true"
+
 
         />
     <Button
@@ -118,7 +130,7 @@
         android:background="@drawable/select"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Add USER"
-        android:onClick="addUser"/>
+        android:text="Add User"
+       />
 
 </RelativeLayout>
