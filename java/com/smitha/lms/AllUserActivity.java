@@ -3,6 +3,9 @@
     import android.content.Intent;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
+    import android.view.Menu;
+    import android.view.MenuInflater;
+    import android.view.MenuItem;
     import android.view.View;
     import android.widget.Button;
     import android.widget.EditText;
@@ -29,6 +32,8 @@
         private Intent intent;
         private int updateUserId=-1,index;
 
+
+
         @Override
         protected void onResume() {
             super.onResume();
@@ -52,10 +57,6 @@
 
             addUser_button=(Button)findViewById(R.id.addUser_Button);
             radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-
-
-
-
 
             updateUser=(User)getIntent().getSerializableExtra("selectedUser");
 
@@ -127,6 +128,28 @@
             });
 
        }
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+
+            MenuInflater inflater=getMenuInflater();
+            inflater.inflate(R.menu.options_menu,menu);
+            return super.onCreateOptionsMenu(menu);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+             switch (item.getItemId()){
+                 case R.id.student_menu:
+                     break;
+
+                 case R.id.book_menu:
+                     break;
+             }
+            return super.onOptionsItemSelected(item);
+        }
+
         public void updateUser(){
 
             nameET.setText(updateUser.getName());

@@ -8,4 +8,6 @@
     <string name="delete">DELETE</string>
     <string name="update">UPDATE</string>
     <string name="new_user">New User</string>
+    <string name="student">Add Student</string>
+    <string name="book">Add Book</string>
 </resources>
