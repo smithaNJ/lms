@@ -1,0 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_all_user"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="com.smitha.lms.BookFragment">
+
+<TextView
+    android:id="@+id/bookId_textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="BookID"
+    android:textSize="30sp"
+    android:layout_gravity="start"
+    android:layout_margin="16dp"
+    />
+<EditText
+    android:id="@+id/bookId_editText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="30sp"
+    android:layout_gravity="end"
+    android:layout_toEndOf="@+id/bookId_textView"
+    android:layout_toRightOf="@+id/bookId_textView"
+    android:inputType="number"
+    android:maxLength="6"
+    android:digits="0,1,2,3,4,5,6,7,8,9"
+    />
+<TextView
+    android:id="@+id/bookName_textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Name"
+    android:textSize="30sp"
+    android:layout_gravity="start"
+    android:layout_margin="16dp"
+    android:layout_below="@+id/bookId_textView"
+
+    />
+<EditText
+    android:id="@+id/bookName_editText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="30dp"
+    android:layout_gravity="end"
+    android:layout_toEndOf="@+id/bookName_textView"
+    android:layout_toRightOf="@+id/bookName_textView"
+    android:layout_below="@+id/bookId_editText"
+    android:inputType="textCapWords"
+    android:maxLength="10"
+    android:layout_margin="16dp"
+
+    />
+<TextView
+    android:id="@+id/bookAuthor_textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Author"
+    android:textSize="30sp"
+    android:layout_gravity="start"
+    android:layout_margin="16dp"
+    android:layout_below="@+id/bookName_textView"
+    />
+    <EditText
+        android:id="@+id/bookAuthor_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/bookAuthor_textView"
+        android:layout_toRightOf="@+id/bookAuthor_textView"
+        android:layout_below="@+id/bookName_editText"
+        android:inputType="textCapWords"
+        android:maxLength="10"
+        android:layout_margin="16dp"
+
+        />
+    <TextView
+        android:id="@+id/category_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textSize="30sp"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:layout_below="@+id/bookAuthor_textView"
+        />
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/category_textView"
+        android:layout_toRightOf="@+id/category_textView"
+        android:layout_below="@+id/bookAuthor_editText"
+        android:layout_margin="16dp"
+        />
+    <TextView
+        android:id="@+id/status_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="30sp"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:layout_below="@+id/category_textView"
+        />
+    <Spinner
+        android:id="@+id/status_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="end"
+        android:layout_toEndOf="@+id/status_textView"
+        android:layout_toRightOf="@+id/status_textView"
+        android:layout_below="@+id/category_spinner"
+        android:layout_margin="16dp"
+        />
+
+<Button
+    android:id="@+id/addBook_Button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/select"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:text="Add Book"
+    />
+
+</RelativeLayout>
+

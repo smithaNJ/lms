@@ -3,6 +3,7 @@
     import android.content.Intent;
     import android.net.Uri;
     import android.support.v4.app.FragmentManager;
+    import android.support.v4.app.FragmentTransaction;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
     import android.view.Menu;
@@ -19,7 +20,7 @@
     import android.support.v4.app.Fragment;
 
 
-    public class AllUserActivity extends AppCompatActivity implements StudentFragment.OnFragmentInteractionListener{
+    public class AllUserActivity extends AppCompatActivity implements StudentFragment.OnFragmentInteractionListener,BookFragment.OnFragmentInteractionListener{
         public static ArrayList<User> usersList=new ArrayList<>();
        // private final String LOG_TAG=AllUserActivity.class.getSimpleName();
        private User user,updateUser=null;
@@ -143,14 +144,19 @@
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
+            FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+            StudentFragment studentFragment=StudentFragment.newInstance("hello","smitha");
+            BookFragment bookFragment=BookFragment.newInstance("hello","smitha");
              switch (item.getItemId()){
                  case R.id.student_menu:
 
-                     StudentFragment studentFragment=StudentFragment.newInstance("hello","smitha");
-                      getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, studentFragment).commit();
+
+                     transaction.replace(R.id.fragment_container, studentFragment).commit();
                      break;
 
                  case R.id.book_menu:
+
+                     transaction.replace(R.id.fragment_container, bookFragment).commit();
                      break;
              }
             return super.onOptionsItemSelected(item);
