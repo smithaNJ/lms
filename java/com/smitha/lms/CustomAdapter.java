@@ -14,28 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter implements View.OnClickListener {
-    private Activity activity;
     private ArrayList<User> userDataSet;
     private User userdata;
     private static class ViewHolder{
         TextView nameTv, ageTv, genderTv, salaryTv, ratingTv;
 
     }
-//    private static class colHolder{
-//        TextView colName,colAge,colSex,colSalary,colRating;
-//    }
 
     public CustomAdapter(Activity activity,int textViewResourceId, List objects) {
         super(activity,textViewResourceId,objects);
+        userDataSet = (ArrayList<User>)objects;
 
-        this.activity=activity;
-        userDataSet = (ArrayList<User>) objects;
-
-    }
-    public int getCount(){
-        if(userDataSet.size()<=0)
-            return 1;
-        return userDataSet.size();
     }
     @Override
     public void onClick(View view) {
@@ -80,7 +69,7 @@ public class CustomAdapter extends ArrayAdapter implements View.OnClickListener 
             userdata=(User)getItem(position);
             holder.nameTv.setText(userdata.getName());
             holder.ageTv.setText(String.valueOf(userdata.getAge()));
-            holder.genderTv.setText(userdata.getSex());
+            holder.genderTv.setText(userdata.getGender());
             holder.salaryTv.setText(String.valueOf(userdata.getSalary()));
             holder.ratingTv.setText(String.valueOf(userdata.getRating()));
         }

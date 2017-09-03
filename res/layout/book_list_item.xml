@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    android:weightSum="5"
+    android:background="@drawable/select">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bid_col_textView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        />
+
+
+    <TextView
+        android:id="@+id/bname_col_textView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/bauthor_col_textView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/bcatagory_col_textView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        />
+
+    <TextView
+        android:id="@+id/bstatus_col_textView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        />
+
+
+
+</LinearLayout>

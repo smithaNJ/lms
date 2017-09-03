@@ -1,27 +1,22 @@
 package com.smitha.lms.data;
 
 import java.io.Serializable;
-
-/**
- * Created by Smitha on 28-06-2017.
- */
-
 public class User implements Serializable
 {
 
     private int id;
     private String name;
     private int age;
-    private String sex;
+    private String gender;
     private double salary;
     private int rating;
 
 
-    public User(int id,String name, int age,String sex, double salary,  int rating) {
+    public User(int id,String name, int age,String gender, double salary,  int rating) {
         this.id=id;
         this.name = name;
         this.age = age;
-        this.sex = sex;
+        this.gender= gender;
         this.salary = salary;
         this.rating = rating;
     }
@@ -58,12 +53,12 @@ public class User implements Serializable
         this.salary = salary;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender =gender;
     }
 
     public int getRating() {
@@ -79,7 +74,7 @@ public class User implements Serializable
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", sex=" + sex +
+                ", gender=" + gender +
                 ", salary=" + salary +
                 ", rating=" + rating +
                 '}';
@@ -92,12 +87,7 @@ public class User implements Serializable
 
         User user = (User) o;
 
-        if (id != user.id) return false;
-        if (age != user.age) return false;
-        if (Double.compare(user.salary, salary) != 0) return false;
-        if (rating != user.rating) return false;
-        if (!name.equals(user.name)) return false;
-        return sex.equals(user.sex);
+        return id == user.id && age == user.age && Double.compare(user.salary, salary) == 0 && rating == user.rating && name.equals(user.name) && gender.equals(user.gender);
 
     }
 
@@ -108,7 +98,7 @@ public class User implements Serializable
         result = id;
         result = 31 * result + name.hashCode();
         result = 31 * result + age;
-        result = 31 * result + sex.hashCode();
+        result = 31 * result + gender.hashCode();
         temp = Double.doubleToLongBits(salary);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + rating;

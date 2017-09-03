@@ -1,15 +1,23 @@
 <resources>
     <string name="app_name">lms</string>
-    <string name="col_name">NAME</string>
-    <string name="col_age">AGE</string>
-    <string name="col_sex">SEX</string>
-    <string name="col_salary">SALARY</string>
-    <string name="col_rating">RATING</string>
-    <string name="delete">DELETE</string>
-    <string name="update">UPDATE</string>
+    <string name="col_name">Name</string>
+    <string name="col_age">Age</string>
+    <string name="col_gender">Gender</string>
+    <string name="col_salary">Salary</string>
+    <string name="col_rating">Rating</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
     <string name="new_user">New User</string>
     <string name="student">Add Student</string>
     <string name="book">Add Book</string>
+    <string name="col_bid">BookID</string>
+    <string name="col_bname">Name</string>
+    <string name="col_author">Author</string>
+    <string name="col_category">Category</string>
+    <string name="col_status">Status</string>
+    <string-array name="catagory_name"><item>Comic</item><item>Technical</item>
+    <item>Autobiography</item><item></item></string-array>
+    <string-array name="status_name"><item>AVAILABLE</item><item>NOT AVAILABLE</item></string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

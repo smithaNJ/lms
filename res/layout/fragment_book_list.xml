@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.smitha.lms.BookListFragment"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="5"
+    android:layout_marginTop="10dp"
+    android:background="@color/lightBlue">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bidtextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/col_bid"/>
+
+    <TextView
+        android:id="@+id/bnametextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/col_bname"/>
+
+    <TextView
+        android:id="@+id/authortextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/col_author"/>
+
+    <TextView
+        android:id="@+id/categorytextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+
+        android:padding="16dp"
+        android:text="@string/col_category"/>
+
+    <TextView
+        android:id="@+id/statustextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:textColor="@color/lines"
+        android:background="@drawable/shape"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:text="@string/col_status"/>
+
+
+</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <ListView
+        android:id="@+id/listView_id1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/del_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:background="@drawable/select"
+        android:textSize="20sp"
+        android:layout_below="@+id/listView_id1"
+        android:layout_margin="10dp"
+        />
+    <Button
+        android:id="@+id/update_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
+        android:background="@drawable/select"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/del_button1"
+        android:layout_below="@id/listView_id1"
+        />
+
+</RelativeLayout>
+
+</LinearLayout>
