@@ -14,7 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 
 import com.smitha.lms.data.User;
+
+import java.util.Iterator;
+
+import static com.smitha.lms.AllUserActivity.user;
 import static com.smitha.lms.AllUserActivity.usersList;
+import static com.smitha.lms.R.id.index_entity_types;
+import static com.smitha.lms.R.id.radioGroup;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -24,11 +31,12 @@ import static com.smitha.lms.AllUserActivity.usersList;
  * create an instance of this fragment.
  */
 public class StudentFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
      String mParam1;
+    String mParam2;
      User user=null;
      EditText nameET,ageET,salaryET;
     RatingBar ratingBar;
@@ -39,25 +47,18 @@ public class StudentFragment extends Fragment {
     public StudentFragment() {
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StudentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StudentFragment newInstance(String param1, String param2) {
+    public static StudentFragment newInstance(User user) {
         StudentFragment fragment = new StudentFragment();
         Bundle args = new Bundle();
 
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("User",user);
         fragment.setArguments(args);
 
         return fragment;
     }
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class StudentFragment extends Fragment {
 
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            user = (User)getArguments().getSerializable("User");
 
         }
 
@@ -84,6 +85,12 @@ public class StudentFragment extends Fragment {
          salaryET=(EditText) view.findViewById(R.id.salary_editText);
          ratingBar=(RatingBar) view.findViewById(R.id.r_bar);
         addUser_button=(Button)view.findViewById(R.id.addUser_Button);
+        if(user!=null) {
+            //addUser_button.setText(R.string.UpdateUser);
+            updateUser(user, view);
+        }
+         else
+            refreshScreen();
 
         final RadioGroup radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -121,6 +128,41 @@ public class StudentFragment extends Fragment {
 
     }
 
+
+
+    public void updateUser(User updateUser, View view){
+        RadioButton radioButtonM,radioButtonF;
+        nameET.setText(updateUser.getName());
+        ageET.setText(String.valueOf(updateUser.getAge()));
+        mParam1=updateUser.getGender();
+        radioButtonM=(RadioButton)view .findViewById(R.id.rbM);
+        radioButtonF=(RadioButton)view.findViewById(R.id.rbF);
+
+
+        if(mParam1.equals("M")) {
+
+            radioButtonM.setText("M");
+            radioButtonM.setChecked(true);
+
+        }
+        else if(mParam1.equals("F")){
+            radioButtonF.setText("F");
+            radioButtonF.setChecked(true);
+        }
+        salaryET.setText(String.valueOf(updateUser.getSalary()));
+        //ratingBar.setNumStars(5);
+        ratingBar.setRating(updateUser.getRating());
+
+    }
+    public void refreshScreen(){
+        nameET.setText("");
+        ageET.setText("");
+        salaryET.setText("");
+        ratingBar.setRating(0);
+
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -131,6 +173,7 @@ public class StudentFragment extends Fragment {
                 int age_currUser, rating_currUser;
                 double salary_currUser;
                 if (mListener != null) {
+
                     if (nameET.getText().toString().isEmpty()) {
                         nameET.setError("Enter name");
                         nameET.requestFocus();
@@ -148,9 +191,20 @@ public class StudentFragment extends Fragment {
                         age_currUser = Integer.parseInt(ageET.getText().toString());
                         salary_currUser = Double.parseDouble(salaryET.getText().toString());
                         rating_currUser = ratingBar.getNumStars();
-                        int new_id = usersList.size() + 1;
-                        user = new User(new_id, name_currUser, age_currUser, mParam1, salary_currUser, rating_currUser);
-                        Log.e("studentFragment", user.toString());
+                        if(user!=null) {
+                            for (Iterator<User> iterator = usersList.iterator();iterator.hasNext();)
+                            {User uUser=iterator.next();
+                               if(uUser.getId()==user.getId()){
+                                   iterator.remove();
+                                   user = new User(user.getId(), name_currUser, age_currUser, mParam1, salary_currUser, rating_currUser);
+                               }
+                            }
+
+                        }else {
+                            int new_id = usersList.size() + 1;
+                            user = new User(new_id, name_currUser, age_currUser, mParam1, salary_currUser, rating_currUser);
+                            Log.e("studentFragment", user.toString());
+                        }
                     }
                     if (user != null)
                         mListener.onStudentFragmentInteraction(user);
@@ -161,6 +215,7 @@ public class StudentFragment extends Fragment {
 
 
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

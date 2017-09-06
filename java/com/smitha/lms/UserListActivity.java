@@ -1,6 +1,8 @@
     package com.smitha.lms;
-    import android.net.Uri;
+    import android.content.ComponentName;
+    import android.content.Intent;
     import android.support.v4.app.FragmentTransaction;
+    import android.support.v4.content.IntentCompat;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
     import android.util.Log;
@@ -8,8 +10,8 @@
     import com.smitha.lms.data.User;
 
     public class UserListActivity extends AppCompatActivity implements StudentListFragment.OnStudentListFragmentInteractionListener,BookListFragment.OnBookListFragmentInteractionListener{
-//        public static User updateUser;
-//        public static Book updateBook;
+
+
         @Override
         public boolean equals(Object obj) {
             return super.equals(obj);
@@ -37,17 +39,37 @@
                 transaction.replace(R.id.fragment_container2,bookListFragment).commit();
             }
 
-//        updateUser=(User)getIntent().getSerializableExtra("selectedUser");
-//            updateBook=(Book)getIntent().getSerializableExtra("selectedBook");
+
        }
 
         @Override
-        public void onStudentListFragmentInteraction(Uri uri) {
+        public void onBackPressed() {
+            super.onBackPressed();
+            Intent intent=new Intent(UserListActivity.this,AllUserActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+//            Intent intent = new Intent(UserListActivity.this,AllUserActivity.class);
+//            ComponentName cn = intent.getComponent();
+//            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//            startActivity(mainIntent);
 
         }
 
         @Override
-        public void onBookListFragmentInteraction(Uri uri) {
+        public void onStudentListFragmentInteraction(User selectedUser) {
+//         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+//            StudentFragment studentFragment=StudentFragment.newInstance(selectedUser);
+//            transaction.replace(R.id.fragment_container,studentFragment);
+            Intent intent=new Intent(UserListActivity.this,AllUserActivity.class);
+            intent.putExtra("selectedUser",selectedUser);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onBookListFragmentInteraction(Book selectedBook) {
+//            FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+//            BookFragment bookFragment=BookFragment.newInstance(selectedBook);
+//            transaction.replace(R.id.fragment_container,bookFragment);
 
         }
     }

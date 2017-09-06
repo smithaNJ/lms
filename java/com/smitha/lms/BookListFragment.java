@@ -103,9 +103,7 @@ public class BookListFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         view.setSelected(true);
-                        Intent intent=new Intent(getActivity(),UserListActivity.class);
-                        intent.putExtra("selectedUser",b);
-                        startActivity(intent);
+                        mListener.onBookListFragmentInteraction(b);
                     }
                 });
 
@@ -143,6 +141,6 @@ public class BookListFragment extends Fragment {
      */
     public interface OnBookListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onBookListFragmentInteraction(Uri uri);
+        void onBookListFragmentInteraction(Book selectedBook);
     }
 }
