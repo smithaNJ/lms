@@ -14,6 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import com.smitha.lms.data.Book;
+import com.smitha.lms.data.User;
+
+import java.util.Iterator;
+
+import static com.smitha.lms.AllUserActivity.booksList;
+import static com.smitha.lms.AllUserActivity.user;
+import static com.smitha.lms.AllUserActivity.usersList;
+import static com.smitha.lms.R.array.catagory_name;
 
 
 /**
@@ -26,8 +34,8 @@ import com.smitha.lms.data.Book;
  */
 public class BookFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -37,6 +45,7 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
     EditText bnameET,bauthorET,bidET;
     Spinner bcatagorysp,bstatussp;
     Button addBook_Button;
+    ArrayAdapter adapter,adapter_status;
     private OnBookFragmentInteractionListener mListener;
 
     public BookFragment() {
@@ -47,16 +56,15 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
      * @return A new instance of fragment BookFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BookFragment newInstance(String param1, String param2) {
+    public static BookFragment newInstance(Book book) {
         BookFragment fragment = new BookFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("Book",book);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,8 +73,8 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            book =(Book) getArguments().getSerializable("Book");
+
         }
     }
 
@@ -80,21 +88,46 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
         bnameET=(EditText)view.findViewById(R.id.bookName_editText);
         bauthorET=(EditText)view.findViewById(R.id.bookAuthor_editText);
         bcatagorysp=(Spinner)view.findViewById(R.id.category_spinner);
-        ArrayAdapter adapter=ArrayAdapter.createFromResource(getActivity(),R.array.catagory_name,android.R.layout.simple_spinner_item);
+         adapter=ArrayAdapter.createFromResource(getActivity(), catagory_name,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bcatagorysp.setAdapter(adapter);
         bcatagorysp.setOnItemSelectedListener(this);
         bstatussp=(Spinner)view.findViewById(R.id.status_spinner);
-        ArrayAdapter adapter_status=ArrayAdapter.createFromResource(getActivity(),R.array.status_name,android.R.layout.simple_spinner_item);
+        adapter_status=ArrayAdapter.createFromResource(getActivity(),R.array.status_name,android.R.layout.simple_spinner_item);
         adapter_status.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bstatussp.setAdapter(adapter_status );
         bstatussp.setOnItemSelectedListener(this);
 
         addBook_Button=(Button)view.findViewById(R.id.addBook_Button);
-
+        refreshScreen();
+        if(book!=null) {
+            addBook_Button.setText(R.string.UpdateBook);
+            updateBook(book, view);
+        }
+        else
+            refreshScreen();
         return view;
     }
+    public void updateBook(Book updateBook,View view){
+         bnameET.setText(updateBook.getName());
+         bauthorET.setText(updateBook.getAuthor());
+        bidET.setText(String.valueOf(updateBook.getId()));
+        Log.e("updateBook",updateBook.toString());
+        Log.e("updateBook",updateBook.getCatagory());
+        Log.e("updateBook",updateBook.getStatus());
+        int pos=adapter.getPosition(updateBook.getCatagory());
+        bcatagorysp.setSelection(pos);
+        int pos1=adapter_status.getPosition(updateBook.getStatus());
+        bstatussp.setSelection(pos1);
+    }
 
+    public void refreshScreen(){
+        bnameET.setText("");
+        bauthorET.setText("");
+        bidET.setText("");
+        bcatagorysp.clearFocus();
+        bstatussp.clearFocus();
+    }
 
     @Override
     public void onResume() {
@@ -102,7 +135,7 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
         addBook_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name_currBook, author_currBook;
+                String name_currBook, author_currBook,catagory_currBook,status_currBook;
                 int id_currBook;
 
                 if (mListener != null) {
@@ -120,8 +153,22 @@ public class BookFragment extends Fragment implements AdapterView.OnItemSelected
                     id_currBook = Integer.parseInt(bidET.getText().toString());
                     name_currBook = bnameET.getText().toString();
                     author_currBook = bauthorET.getText().toString();
-                    book = new Book(id_currBook, name_currBook, author_currBook, mParam1, mParam2);
-                    Log.e("BookFragment", book.toString());
+                        catagory_currBook=(String)bcatagorysp.getSelectedItem();
+                        status_currBook=(String)bstatussp.getSelectedItem();
+                        refreshScreen();
+                        if(book!=null) {
+                            for (Iterator<Book> iterator = booksList.iterator(); iterator.hasNext(); ) {
+                                Book uBook = iterator.next();
+                                if (uBook.getId() == book.getId()) {
+                                    iterator.remove();
+                                    book = new Book(id_currBook, name_currBook, author_currBook,catagory_currBook,status_currBook);
+
+                                }
+                            }
+                        }else {
+                            book = new Book(id_currBook, name_currBook, author_currBook,catagory_currBook,status_currBook);
+                            Log.e("BookFragment", book.toString());
+                        }
                       }
                     if (book != null)
                         mListener.onBookFragmentInteraction(book);

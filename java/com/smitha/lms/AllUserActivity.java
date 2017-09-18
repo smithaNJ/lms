@@ -26,8 +26,10 @@
         public static ArrayList<User> usersList=new ArrayList<>();
         public static ArrayList<Book> booksList=new ArrayList<>();
         public static User user;
+        public static Book book;
 
        private User updateUser;
+        private Book updateBook;
 //        private EditText nameET,ageET,salaryET;
 //
 //        private RadioGroup radioGroup;
@@ -54,22 +56,26 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_all_user);
             updateUser=(User)getIntent().getSerializableExtra("selectedUser");
+            updateBook=(Book)getIntent().getSerializableExtra("selectedBook");
 
             if(updateUser!=null){
+                user=updateUser;
                 Log.e("updateuser",updateUser.toString());
                 StudentFragment studentFragment;
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                studentFragment=StudentFragment.newInstance(updateUser);
+                studentFragment=StudentFragment.newInstance(user);
                 transaction.replace(R.id.fragment_container,studentFragment).commit();
 
            }
-     //       else{
+            if(updateBook!=null){
+                book=updateBook;
+                Log.e("updatebook",updateBook.toString());
+                BookFragment bookFragment;
+                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                bookFragment=BookFragment.newInstance(book);
+                transaction.replace(R.id.fragment_container,bookFragment).commit();
+            }
 
-//                StudentFragment studentFragment;
-//                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-//                studentFragment=StudentFragment.newInstance(user);
-//                transaction.replace(R.id.fragment_container,studentFragment).commit();
-//            }
 
 
        }
@@ -84,10 +90,12 @@
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
+            user=null;
+            book = null;
             StudentFragment studentFragment;
             FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
              studentFragment=StudentFragment.newInstance(user);
-            BookFragment bookFragment=BookFragment.newInstance("hello","smitha");
+            BookFragment bookFragment=BookFragment.newInstance(book);
 
              switch (item.getItemId()){
 
@@ -96,6 +104,7 @@
 
 
                      transaction.replace(R.id.fragment_container, studentFragment).commit();
+
                      break;
 
                  case R.id.book_menu:
@@ -106,37 +115,6 @@
             return super.onOptionsItemSelected(item);
         }
 
-//        public void updateUser(){
-//             RadioButton radioButtonM,radioButtonF;
-//            nameET.setText(updateUser.getName());
-//            ageET.setText(String.valueOf(updateUser.getAge()));
-//            gender_currUser =updateUser.getGender();
-//            radioButtonM=(RadioButton)findViewById(R.id.rbM);
-//            radioButtonF=(RadioButton)findViewById(R.id.rbF);
-//
-//            if(gender_currUser.equals("M")) {
-//
-//                radioButtonM.setText("M");
-//                radioButtonM.setChecked(true);
-//
-//            }
-//            else if(gender_currUser.equals("F")){
-//                radioButtonF.setText("F");
-//                radioButtonF.setChecked(true);
-//            }
-//            salaryET.setText(String.valueOf(updateUser.getSalary()));
-//            ratingBar.setNumStars(5);
-//            ratingBar.setRating(updateUser.getRating());
-//
-//        }
-//        public void refreshScreen(){
-//            nameET.setText("");
-//            ageET.setText("");
-//            salaryET.setText("");
-//            ratingBar.setRating(0);
-//            radioGroup.clearCheck();
-//
-//        }
 
         @Override
         public void onStudentFragmentInteraction(User newuser) {

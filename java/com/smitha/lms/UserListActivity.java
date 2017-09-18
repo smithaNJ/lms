@@ -37,6 +37,8 @@
                 books = (Book) getIntent().getSerializableExtra("NewBook");
                 BookListFragment bookListFragment=BookListFragment.newInstance(books);
                 transaction.replace(R.id.fragment_container2,bookListFragment).commit();
+                Log.e("UserListActivity",books.toString());
+
             }
 
 
@@ -46,8 +48,9 @@
         public void onBackPressed() {
             super.onBackPressed();
             Intent intent=new Intent(UserListActivity.this,AllUserActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
 //            Intent intent = new Intent(UserListActivity.this,AllUserActivity.class);
 //            ComponentName cn = intent.getComponent();
 //            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
@@ -61,6 +64,7 @@
 //            StudentFragment studentFragment=StudentFragment.newInstance(selectedUser);
 //            transaction.replace(R.id.fragment_container,studentFragment);
             Intent intent=new Intent(UserListActivity.this,AllUserActivity.class);
+           // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("selectedUser",selectedUser);
             startActivity(intent);
         }
@@ -70,6 +74,9 @@
 //            FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
 //            BookFragment bookFragment=BookFragment.newInstance(selectedBook);
 //            transaction.replace(R.id.fragment_container,bookFragment);
+            Intent intent=new Intent(UserListActivity.this,AllUserActivity.class);
+            intent.putExtra("selectedBook",selectedBook);
+            startActivity(intent);
 
         }
     }

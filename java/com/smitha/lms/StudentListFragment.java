@@ -56,6 +56,8 @@
     final Button delButton=(Button)view.findViewById(R.id.del_button);
     final Button updateButton=(Button)view.findViewById(R.id.update_button);
     usersList.add(newUserToList);
+        newUserToList=null;
+
     listView = (ListView) view.findViewById(R.id.listView_id);
     adapter = new CustomAdapter(getActivity(), R.layout.user_list_item, usersList);
     listView.setAdapter(adapter);

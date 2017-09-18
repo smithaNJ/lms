@@ -67,6 +67,7 @@ public class CustomAdapter extends ArrayAdapter implements View.OnClickListener 
 
         }else {
             userdata=(User)getItem(position);
+
             holder.nameTv.setText(userdata.getName());
             holder.ageTv.setText(String.valueOf(userdata.getAge()));
             holder.genderTv.setText(userdata.getGender());

@@ -19,8 +19,7 @@ import java.util.Iterator;
 
 import static com.smitha.lms.AllUserActivity.user;
 import static com.smitha.lms.AllUserActivity.usersList;
-import static com.smitha.lms.R.id.index_entity_types;
-import static com.smitha.lms.R.id.radioGroup;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +36,6 @@ public class StudentFragment extends Fragment {
     // TODO: Rename and change types of parameters
      String mParam1;
     String mParam2;
-     User user=null;
      EditText nameET,ageET,salaryET;
     RatingBar ratingBar;
     Button addUser_button;
@@ -85,8 +83,9 @@ public class StudentFragment extends Fragment {
          salaryET=(EditText) view.findViewById(R.id.salary_editText);
          ratingBar=(RatingBar) view.findViewById(R.id.r_bar);
         addUser_button=(Button)view.findViewById(R.id.addUser_Button);
+        refreshScreen();
         if(user!=null) {
-            //addUser_button.setText(R.string.UpdateUser);
+            addUser_button.setText(R.string.UpdateUser);
             updateUser(user, view);
         }
          else
@@ -168,6 +167,11 @@ public class StudentFragment extends Fragment {
         super.onResume();
         addUser_button.setOnClickListener(new View.OnClickListener() {
             @Override
+            public int hashCode() {
+                return super.hashCode();
+            }
+
+            @Override
             public void onClick(View view) {
                 String name_currUser;
                 int age_currUser, rating_currUser;
@@ -190,7 +194,8 @@ public class StudentFragment extends Fragment {
                         name_currUser = nameET.getText().toString();
                         age_currUser = Integer.parseInt(ageET.getText().toString());
                         salary_currUser = Double.parseDouble(salaryET.getText().toString());
-                        rating_currUser = ratingBar.getNumStars();
+                        rating_currUser =(int)ratingBar.getRating();
+                        refreshScreen();
                         if(user!=null) {
                             for (Iterator<User> iterator = usersList.iterator();iterator.hasNext();)
                             {User uUser=iterator.next();
@@ -201,10 +206,10 @@ public class StudentFragment extends Fragment {
                             }
 
                         }else {
-                            int new_id = usersList.size() + 1;
-                            user = new User(new_id, name_currUser, age_currUser, mParam1, salary_currUser, rating_currUser);
-                            Log.e("studentFragment", user.toString());
-                        }
+                        int new_id = usersList.size() + 1;
+                        user = new User(new_id, name_currUser, age_currUser, mParam1, salary_currUser, rating_currUser);
+                           Log.e("studentFragment", user.toString());
+                    }
                     }
                     if (user != null)
                         mListener.onStudentFragmentInteraction(user);
