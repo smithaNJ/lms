@@ -16,10 +16,20 @@
     <string name="col_category">Category</string>
     <string name="col_status">Status</string>
     <string name="UpdateBook">UpdateBook</string>
-    <string-array name="catagory_name"><item>Comic</item><item>Technical</item>
-    <item>Autobiography</item><item></item></string-array>
-    <string-array name="status_name"><item>AVAILABLE</item><item>NOT AVAILABLE</item></string-array>
+    <string-array name="catagory_name">
+        <item>Comic</item>
+        <item>Technical</item>
+        <item>Autobiography</item>
+        <item></item>
+    </string-array>
+    <string-array name="status_name">
+        <item>AVAILABLE</item>
+        <item>NOT AVAILABLE</item>
+    </string-array>
     <string name="UpdateUser">Update User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome">LIBRARY MANAGEMENT SYSTEM</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

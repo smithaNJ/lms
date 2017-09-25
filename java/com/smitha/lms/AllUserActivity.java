@@ -66,7 +66,7 @@
                 studentFragment=StudentFragment.newInstance(user);
                 transaction.replace(R.id.fragment_container,studentFragment).commit();
 
-           }
+           }else
             if(updateBook!=null){
                 book=updateBook;
                 Log.e("updatebook",updateBook.toString());
@@ -74,7 +74,13 @@
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 bookFragment=BookFragment.newInstance(book);
                 transaction.replace(R.id.fragment_container,bookFragment).commit();
+            }else {
+                WelcomeFragment welcomeFragment;
+                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                welcomeFragment= WelcomeFragment.newInstance("welcome","LMS");
+                transaction.replace(R.id.fragment_container,welcomeFragment).commit();
             }
+
 
 
 
